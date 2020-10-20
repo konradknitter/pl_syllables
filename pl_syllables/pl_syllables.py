@@ -1,11 +1,5 @@
 POLISH_VOVELS = ['a', 'ą', 'e', 'ę', 'i', 'o', 'u', 'ó', 'y']
 
-def count_sylables(word):
-    result = 0
-    for character in word:
-        if character in POLISH_VOVELS:
-            print(character)
-
 class WordSplitter():
     def __init__(self, word):
         self.word = word.lower()
@@ -32,13 +26,10 @@ class WordSplitter():
                     syllable_index = syllable_index + 1
                     syllable = syllable + character
 
-                    if (id + 1) < len(self.word) and character == "i" and self.word[id + 1] in POLISH_VOVELS:
-                        id = id + 1
-                        syllable = syllable + self.word[id]
-
-                    if (id + 1) < len(self.word) and character == "u":
-                        id = id + 1
-                        syllable = syllable + self.word[id]
+                    if (id + 1) < len(self.word):
+                        if character == "i" and self.word[id + 1] in POLISH_VOVELS or character == "u":
+                            id = id + 1
+                            syllable = syllable + self.word[id]
 
                     if syllable_index == number_of_syllables:
                         if id == (len(self.word) - 1):
@@ -76,7 +67,9 @@ class WordSplitter():
                     syllable = syllable + character
                 id = id + 1
             return split_word
-        else:
+        elif number_of_syllables == 1:
             return [self.word]
+        else:
+            return []
 
-print(WordSplitter("epigalokatechina").to_syllables())
+print(WordSplitter("parapseudopodia").to_syllables())
