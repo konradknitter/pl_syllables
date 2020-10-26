@@ -1,7 +1,7 @@
 POLISH_VOVELS = ['a', 'ą', 'e', 'ę', 'i', 'o', 'u', 'ó', 'y']
 
 class WordSplitter():
-    def __init__(self, word):
+    def __init__(self, word: str):
         self.word = word.lower()
 
     def count_sylables(self):
@@ -14,6 +14,10 @@ class WordSplitter():
         return number_of_syllables
 
     def to_syllables(self):
+        """
+        >> WordSplitter("słowo").to_syllables()
+        ["sło", "wo"]
+        """
         number_of_syllables = self.count_sylables()
         if number_of_syllables > 1:
             split_word = []
